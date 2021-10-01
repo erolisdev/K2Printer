@@ -100,7 +100,6 @@ public class AidlUtil {
 
     public int getPrinterStatus(){
         if(printerService == null){
-            Toast.makeText(context,"Service disconnected",Toast.LENGTH_LONG).show();
             return -1;
         }
 
@@ -132,7 +131,7 @@ public class AidlUtil {
     // TODO Second parameter will check setFontZoom(first,second)
     public void setFontSize(int size) {
         try {
-            printerService.setFontZoom(size,size);
+            printerService.setFontZoom(size,4);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
