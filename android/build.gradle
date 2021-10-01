@@ -16,6 +16,9 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs project(':k2_printer').file('libs')
+        }
     }
 }
 
@@ -32,9 +35,10 @@ android {
     defaultConfig {
         minSdkVersion 16
     }
+}
 
-    sourceSets {
-        java.srcDirs = ["src/main/java", "src/main/aidl" ]
-    }
-
+dependencies{
+    implementation(name: 'payLib', ext: 'aar')
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    compileOnly(name: 'core-3.4.0', ext: 'jar')
 }

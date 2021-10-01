@@ -92,7 +92,7 @@ public class AidlUtil {
 
          int k = darkness[index];
          try {
-             printerService.sendRawData(ESCUtil.setPrinterDarkness(k), null);
+             printerService.sendRawData(ESCUtil.setPrinterDarkness(k));
          } catch (RemoteException e) {
              e.printStackTrace();
          }

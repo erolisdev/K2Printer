@@ -3,10 +3,10 @@ package com.eronor.k2_printer;
 import android.content.Context;
 import android.util.Log;
 
-import com.tablemi.flutter_sunmi_printer.utils.AidlUtil;
-import com.tablemi.flutter_sunmi_printer.utils.Base64Utils;
-import com.tablemi.flutter_sunmi_printer.utils.BitmapUtil;
-import com.tablemi.flutter_sunmi_printer.utils.ESCUtil;
+import com.eronor.k2_printer.utils.AidlUtil;
+import com.eronor.k2_printer.utils.Base64Utils;
+import com.eronor.k2_printer.utils.BitmapUtil;
+import com.eronor.k2_printer.utils.ESCUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
