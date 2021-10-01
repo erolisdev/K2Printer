@@ -17,10 +17,11 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs project(':k2_printer').file('libs')
+        }
     }
-    flatDir {
-        dirs project(':k2_printer').file('libs')
-    }
+
 }
 
 apply plugin: 'com.android.library'
