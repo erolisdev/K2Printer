@@ -4,7 +4,8 @@ version '1.0'
 buildscript {
     repositories {
         google()
-        mavenCentral()
+//        mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -16,7 +17,8 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral()
+//        mavenCentral()
+        jcenter()
         flatDir {
             dirs project(':k2_printer').file('libs')
         }
@@ -29,12 +31,22 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 30
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
 
     defaultConfig {
         minSdkVersion 16
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies{
+    implementation(name: 'payLib', ext: 'aar')
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    compileOnly(name: 'core-3.4.0', ext: 'jar')
 }
