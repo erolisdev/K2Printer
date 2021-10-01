@@ -11,9 +11,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.widget.Toast;
 
-import com.sunmi.pay.hardware.aidl.print.PrinterCallback;
 
-import com.tablemi.flutter_sunmi_printer.entities.TableItem;
+import com.eronor.k2_printer.entities.TableItem;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
