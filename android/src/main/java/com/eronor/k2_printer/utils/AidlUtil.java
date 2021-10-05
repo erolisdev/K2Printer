@@ -26,7 +26,7 @@ public class AidlUtil {
 
     private ExtPrinterService printerService;
     private static AidlUtil mAidlUtil = new AidlUtil();
-    private static final int LINE_BYTE_SIZE = 32;
+    private static final int LINE_BYTE_SIZE = 48;
     private Context context;
 
     private AidlUtil() {
@@ -128,10 +128,9 @@ public class AidlUtil {
         }
     }
 
-    // TODO Second parameter will check setFontZoom(first,second)
     public void setFontSize(int size) {
         try {
-            printerService.setFontZoom(size,4);
+            printerService.setFontZoom(size,size);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -177,21 +176,21 @@ public class AidlUtil {
             return;
         }
         try {
-            if (isBold) {
-                printerService.sendRawData(ESCUtil.boldOn());
-            } else {
-                printerService.sendRawData(ESCUtil.boldOff());
-            }
-
-            if (isUnderLine) {
-                printerService.sendRawData(ESCUtil.underlineWithOneDotWidthOn());
-            } else {
-                printerService.sendRawData(ESCUtil.underlineOff());
-            }
+//            if (isBold) {
+//                printerService.sendRawData(ESCUtil.boldOn());
+//            } else {
+//                printerService.sendRawData(ESCUtil.boldOff());
+//            }
+//
+//            if (isUnderLine) {
+//                printerService.sendRawData(ESCUtil.underlineWithOneDotWidthOn());
+//            } else {
+//                printerService.sendRawData(ESCUtil.underlineOff());
+//            }
             printerService.setAlignMode(alignment);
-            printerService.setFontZoom(size,2);
+            printerService.setFontZoom(size,size);
             printerService.printText(content);
-            printerService.lineWrap(3);
+            printerService.lineWrap(1);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -275,6 +274,18 @@ public class AidlUtil {
             return;
         }
         try {
+            printerService.printColumnsText(text, width, align);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void printTableItem(String[] text, int[] width, int[] align, int size) {
+        if (printerService == null) {
+            return;
+        }
+        try {
+            printerService.setFontZoom(size,size);
             printerService.printColumnsText(text, width, align);
         } catch (RemoteException e) {
             e.printStackTrace();

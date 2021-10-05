@@ -12,10 +12,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.LinkedList;
+import com.eronor.k2_printer.entities.TableItem;
+
 public class K2PrinterModule {
 
   private static boolean isPrinting = false;
-  public static int DEFAULT_FONT_SIZE = 24;
+  public static int DEFAULT_FONT_SIZE = 0;
 
   public void initAidl(Context context) {
     AidlUtil.getInstance().connectPrinterService(context);
@@ -72,8 +75,9 @@ public class K2PrinterModule {
     }
 
     // Print text
-    setFontSize(size);
-    AidlUtil.getInstance().printTableItem(new String[] { text }, new int[] { 32 }, new int[] { align });
+//    setFontSize(size);
+//    AidlUtil.getInstance().printTableItem(new String[] { text }, new int[] { 32 }, new int[] { align });
+    AidlUtil.getInstance().printText(text,size,align,bold,underline);
     if (linesAfter > 0) {
       emptyLines(linesAfter);
     }
@@ -109,13 +113,21 @@ public class K2PrinterModule {
         int width = col.getInt("width");
         int align = col.getInt("align");
         colsText[i] = text;
-        colsWidth[i] = width;
+        colsWidth[i] = width*4;
         colsAlign[i] = align;
       }
 
+      TableItem tableItem = new TableItem();
+      tableItem.setText(colsText);
+      tableItem.setWidth(colsWidth);
+      tableItem.setAlign(colsAlign);
+
+      list.add(tableItem);
+
       // Print row
       setFontSize(textSize);
-      AidlUtil.getInstance().printTableItem(colsText, colsWidth, colsAlign);
+      AidlUtil.getInstance().printTable(list);
+//      AidlUtil.getInstance().printTableItem(colsText, colsWidth, colsAlign);
       if (linesAfter > 0) {
         emptyLines(linesAfter);
       }

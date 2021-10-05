@@ -12,7 +12,7 @@ import 'enums.dart';
 class SunmiCol {
   SunmiCol({
     this.text = '',
-    this.width = 2,
+    this.width = 4,
     this.align = SunmiAlign.left,
   }) {
     if (width < 1 || width > 12) {
@@ -24,11 +24,13 @@ class SunmiCol {
   int width;
   SunmiAlign align;
 
-  Map<String, String> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       "text": text,
-      "width": width.toString(),
-      "align": align.value.toString(),
+      "width": width,
+      "align": align.value,
+      // "width": width.toString(),
+      // "align": align.value.toString(),
     };
   }
 }

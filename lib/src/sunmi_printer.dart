@@ -77,7 +77,7 @@ class K2Printer {
   /// Print horizontal full width separator
   static Future<void> hr({
     String ch = '-',
-    int len = 62,
+    int len = 48,
     linesAfter = 0,
   }) async {
     await text(List.filled(len, ch[0]).join(), linesAfter: linesAfter);
@@ -99,8 +99,10 @@ class K2Printer {
       throw Exception('Total columns width must be equal to 12');
     }
 
-    final colsJson = List<Map<String, String>>.from(
-        cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
+    // final colsJson = List<Map<String, String>>.from(
+    //     cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
+    final colsJson = List<Map<String, dynamic>>.from(
+        cols.map<Map<String, dynamic>>((SunmiCol col) => col.toJson()));
 
     await _channel.invokeMethod(PRINT_ROW, {
       "cols": json.encode(colsJson),
