@@ -107,6 +107,7 @@ public class K2PrinterModule {
       String[] colsText = new String[cols.length()];
       int[] colsWidth = new int[cols.length()];
       int[] colsAlign = new int[cols.length()];
+      LinkedList<TableItem> list = new LinkedList<>();
       for (int i = 0; i < cols.length(); i++) {
         JSONObject col = cols.getJSONObject(i);
         String text = col.getString("text");
