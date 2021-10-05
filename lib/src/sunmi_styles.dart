@@ -14,7 +14,7 @@ class SunmiStyles {
     this.bold = false,
     this.underline = false,
     this.align = SunmiAlign.left,
-    this.size = SunmiSize.md,
+    this.size = SunmiSize.xs,
   });
 
   final bool bold;
