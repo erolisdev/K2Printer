@@ -345,6 +345,18 @@ public class AidlUtil {
         }
     }
 
+    public void flush() {
+        if (printerService == null) {
+            return;
+        }
+
+        try {
+            printerService.flush();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     // public void sendRawDatabyBuffer(byte[] data, ICallback iCallback) {
     //     if (woyouService == null) {
     //         return;

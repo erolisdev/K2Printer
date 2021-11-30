@@ -27,6 +27,7 @@ public class K2PrinterPlugin implements FlutterPlugin, MethodCallHandler {
     private String PRINT_IMAGE = "printImage";
     private String CUT_PAPER = "cutPaper";
     private String PRINT_BARCODE = "printBarcode";
+    private String FLUSH = "flush";
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -116,7 +117,10 @@ public class K2PrinterPlugin implements FlutterPlugin, MethodCallHandler {
             System.out.println(data + " " + barcodeType + " " + width+ " " + height+ " " + textPosition);
             k2PrinterModule.printBarCode(data, barcodeType,width ,height, textPosition);
             result.success(null);
-        } else {
+        }else if (call.method.equals(FLUSH)) {
+            k2PrinterModule.flush();
+            result.success(null);
+        }  else {
             result.notImplemented();
         }
     }

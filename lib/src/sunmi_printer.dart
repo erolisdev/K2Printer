@@ -32,6 +32,7 @@ class K2Printer {
   static const String PRINT_IMAGE = "printImage";
   static const String CUT_PAPER = "cutPaper";
   static const String PRINT_BARCODE = "printBarcode";
+  static const String FLUSH = "flush";
 
   static const MethodChannel _channel = const MethodChannel('k2_printer');
 
@@ -158,5 +159,8 @@ class K2Printer {
       "textPosition": textPosition.value,
     });
     print('$data ======  ${barCodeType.value} ===== $width ===== $height ===== ${textPosition.value}');
+  }
+  static Future<void> flush() async {
+    await _channel.invokeMethod(FLUSH);
   }
 }
