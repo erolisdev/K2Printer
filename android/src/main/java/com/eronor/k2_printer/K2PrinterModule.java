@@ -162,7 +162,7 @@ public class K2PrinterModule {
     AidlUtil.getInstance().cutPaper();
   }
 
-  public void printBarCode(String data, int symbology, int height, int width, int textposition) {
-    AidlUtil.getInstance().printBarCode(data, symbology,height,width,textposition);
+  public void printBarCode(String data, int symbology, int width ,int height, int textposition) {
+    AidlUtil.getInstance().printBarCode(data, symbology,width,height,textposition);
   }
 }

@@ -8,6 +8,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+
 // import 'package:flutter/services.dart';
 // import 'package:k2_printer/src/enums.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ import 'sunmi_styles.dart';
 
 class K2Printer {
   static const String RESET = "reset";
+
   // static const String START_PRINT = "startPrint";
   // static const String STOP_PRINT = "stopPrint";
   // static const String IS_PRINTING = "isPrinting";
@@ -31,8 +33,7 @@ class K2Printer {
   static const String CUT_PAPER = "cutPaper";
   static const String PRINT_BARCODE = "printBarcode";
 
-  static const MethodChannel _channel =
-      const MethodChannel('k2_printer');
+  static const MethodChannel _channel = const MethodChannel('k2_printer');
 
   static Future<void> reset() async {
     await _channel.invokeMethod(RESET);
@@ -142,18 +143,19 @@ class K2Printer {
     });
   }
 
-  static Future<void> printBarCode(String data,{
-  SunmiBarCodeType barCodeType : SunmiBarCodeType.ean13,
-  int heigth : 50,
-  int width : 4,
-  SunmiBarCodeTextPosition textPosition : SunmiBarCodeTextPosition.downward,
-}) async {
-    await _channel.invokeMethod(PRINT_BARCODE,{
-      "data" : data,
+  static Future<void> printBarCode(
+    String data, {
+    SunmiBarCodeType barCodeType: SunmiBarCodeType.ean13,
+    int width: 2,
+    int heigth: 165,
+    SunmiBarCodeTextPosition textPosition: SunmiBarCodeTextPosition.downward,
+  }) async {
+    await _channel.invokeMethod(PRINT_BARCODE, {
+      "data": data,
       "barCodeType": barCodeType.value,
-      "heigth" : heigth,
-      "width" : width,
-      "textPosition" : textPosition.value,
+      "width": width,
+      "heigth": heigth,
+      "textPosition": textPosition.value,
     });
   }
 }

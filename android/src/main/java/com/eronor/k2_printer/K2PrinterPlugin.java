@@ -110,10 +110,10 @@ public class K2PrinterPlugin implements FlutterPlugin, MethodCallHandler {
         } else if (call.method.equals(PRINT_BARCODE)) {
             String data = call.argument("data");
             int barcodeType = call.argument("barCodeType");
-            int heigth = call.argument("heigth");
             int width = call.argument("width");
+            int heigth = call.argument("heigth");
             int textPosition = call.argument("textPosition");
-            k2PrinterModule.printBarCode(data, barcodeType, heigth, width, textPosition);
+            k2PrinterModule.printBarCode(data, barcodeType,width ,heigth, textPosition);
             result.success(null);
         } else {
             result.notImplemented();
