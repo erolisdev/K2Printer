@@ -147,15 +147,16 @@ class K2Printer {
     String data, {
     SunmiBarCodeType barCodeType: SunmiBarCodeType.ean13,
     int width: 2,
-    int heigth: 165,
+    int height: 165,
     SunmiBarCodeTextPosition textPosition: SunmiBarCodeTextPosition.downward,
   }) async {
     await _channel.invokeMethod(PRINT_BARCODE, {
       "data": data,
       "barCodeType": barCodeType.value,
       "width": width,
-      "heigth": heigth,
+      "height": height,
       "textPosition": textPosition.value,
     });
+    print('$data ======  ${barCodeType.value} ===== $width ===== $height ===== ${textPosition.value}');
   }
 }

@@ -82,24 +82,24 @@ public class AidlUtil {
     /**
      * 设置打印浓度
      */
-    private int[] darkness = new int[] { 0x0600, 0x0500, 0x0400, 0x0300, 0x0200, 0x0100, 0, 0xffff, 0xfeff, 0xfdff,
-            0xfcff, 0xfbff, 0xfaff };
+    private int[] darkness = new int[]{0x0600, 0x0500, 0x0400, 0x0300, 0x0200, 0x0100, 0, 0xffff, 0xfeff, 0xfdff,
+            0xfcff, 0xfbff, 0xfaff};
 
     public void setDarkness(int index) {
-         if (printerService == null) {
-             return;
-         }
+        if (printerService == null) {
+            return;
+        }
 
-         int k = darkness[index];
-         try {
-             printerService.sendRawData(ESCUtil.setPrinterDarkness(k));
-         } catch (RemoteException e) {
-             e.printStackTrace();
-         }
+        int k = darkness[index];
+        try {
+            printerService.sendRawData(ESCUtil.setPrinterDarkness(k));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getPrinterStatus(){
-        if(printerService == null){
+    public int getPrinterStatus() {
+        if (printerService == null) {
             return -1;
         }
 
@@ -116,7 +116,7 @@ public class AidlUtil {
     /**
      * 初始化打印机
      */
-   public void initPrinter() {
+    public void initPrinter() {
         if (printerService == null) {
             return;
         }
@@ -130,7 +130,7 @@ public class AidlUtil {
 
     public void setFontSize(int size) {
         try {
-            printerService.setFontZoom(size,size);
+            printerService.setFontZoom(size, size);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -154,7 +154,7 @@ public class AidlUtil {
     }
 
     /**
-     * // symbology
+     * ===== symbology
      * 0：UPC-A
      * 1：UPC-E
      * 2：EAN13
@@ -164,18 +164,18 @@ public class AidlUtil {
      * 6:CODABAR
      * 7:CODE93
      * 8:CODE128
-     * // text postion
+     * ===== text postion
      * 0：Not to print
      * 1：Upward side of bar code
      * 2：Downward side of bar code
      * 3：Upward & downward side of bar code
      */
-    public void printBarCode(String data, int symbology, int height, int width, int textposition) {
+    public void printBarCode(String data, int symbology, int width, int height, int textposition) {
         if (printerService == null) {
             return;
         }
         try {
-            printerService.printBarCode(data, symbology, height, width, textposition);
+            printerService.printBarCode(data, symbology, width, height, textposition);
             printerService.lineWrap(2);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -185,7 +185,7 @@ public class AidlUtil {
     /**
      * 打印文字
      */
-    public void printText(String content, int size,int alignment,boolean isBold, boolean isUnderLine) {
+    public void printText(String content, int size, int alignment, boolean isBold, boolean isUnderLine) {
         if (printerService == null) {
             return;
         }
@@ -202,7 +202,7 @@ public class AidlUtil {
 //                printerService.sendRawData(ESCUtil.underlineOff());
 //            }
             printerService.setAlignMode(alignment);
-            printerService.setFontZoom(size,size);
+            printerService.setFontZoom(size, size);
             printerService.printText(content);
             printerService.lineWrap(1);
         } catch (RemoteException e) {
@@ -247,14 +247,14 @@ public class AidlUtil {
         }
         try {
             if (orientation == 0) {
-                printerService.printBitmap(bitmap,0);
+                printerService.printBitmap(bitmap, 0);
                 printerService.printText("\nHorizantal\n");
-                printerService.printBitmap(bitmap,0);
+                printerService.printBitmap(bitmap, 0);
                 printerService.printText("\nHorizantal\n");
             } else {
-                printerService.printBitmap(bitmap,0);
+                printerService.printBitmap(bitmap, 0);
                 printerService.printText("\nVertical\n");
-                printerService.printBitmap(bitmap,0);
+                printerService.printBitmap(bitmap, 0);
                 printerService.printText("\nVertical\n");
             }
             printerService.lineWrap(2);
@@ -299,7 +299,7 @@ public class AidlUtil {
             return;
         }
         try {
-            printerService.setFontZoom(size,size);
+            printerService.setFontZoom(size, size);
             printerService.printColumnsText(text, width, align);
         } catch (RemoteException e) {
             e.printStackTrace();
