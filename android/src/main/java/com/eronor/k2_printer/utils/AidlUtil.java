@@ -154,7 +154,21 @@ public class AidlUtil {
     }
 
     /**
-     * 打印条形码
+     * // symbology
+     * 0：UPC-A
+     * 1：UPC-E
+     * 2：EAN13
+     * 3：EAN8
+     * 4:CODE39
+     * 5:ITF
+     * 6:CODABAR
+     * 7:CODE93
+     * 8:CODE128
+     * // text postion
+     * 0：Not to print
+     * 1：Upward side of bar code
+     * 2：Downward side of bar code
+     * 3：Upward & downward side of bar code
      */
     public void printBarCode(String data, int symbology, int height, int width, int textposition) {
         if (printerService == null) {
