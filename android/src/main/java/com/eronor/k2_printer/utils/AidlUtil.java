@@ -339,7 +339,7 @@ public class AidlUtil {
         }
 
         try {
-            printerService.cutPaper(0, 0);
+            printerService.cutPaper(1, 0);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
